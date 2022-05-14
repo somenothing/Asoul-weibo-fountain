@@ -62,8 +62,9 @@ def aid():
     driver.find_elements(By.CSS_SELECTOR, 'span[node-type="like_status"]')[index].click()
     time.sleep(2)
     driver.find_elements(By.CSS_SELECTOR, 'span[node-type="comment_btn_text"]>span')[index].click()
+    print('getting comment ...')
     content = get_sentence()
-    print('ready to comment: ', content)
+    print('\rready to comment: ', content)
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, 'W_input'))
     )
@@ -81,9 +82,10 @@ if __name__ == '__main__':
     while True:
         try:
             aid()
+            print('success')
         except BaseException as e:
             print('failed:', e)
         finally:
-            print('completed at %s', time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+            print('completed at %s' % time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
             print('input Ctrl+C to quit')
         time.sleep(45)
